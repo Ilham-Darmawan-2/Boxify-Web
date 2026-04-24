@@ -17,11 +17,11 @@ echo -e "${CYAN}${BOLD}=========================================${NC}\n"
 # 1. Validation
 echo -e "${BLUE}[1/4] Validating Dependencies...${NC}"
 
-if ! command -v python3 &> /dev/null; then
-    echo -e "${RED}[ERROR] Python3 is not installed.${NC}"
+if ! command -v python3.10 &> /dev/null; then
+    echo -e "${RED}[ERROR] Python 3.10 is not installed.${NC}"
     exit 1
 fi
-echo -e "  - Python3: $(python3 --version)"
+echo -e "  - Python 3.10: $(python3.10 --version)"
 
 if ! command -v node &> /dev/null; then
     echo -e "${RED}[ERROR] Node.js is not installed.${NC}"
@@ -41,7 +41,7 @@ cd backend
 
 if [ ! -d "venv" ]; then
     echo -e "  - Creating virtual environment..."
-    python3 -m venv venv
+    python3.10 -m venv venv
 else
     echo -e "  - Virtual environment already exists."
 fi
