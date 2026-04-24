@@ -42,9 +42,13 @@ try {
 Write-Step "2/4" "Setting up Backend (FastAPI)..."
 Set-Location backend
 
-if (-not (Test-Path "venv")) {
+if (-not (Test-Path "venv") -or -not (Test-Path "venv\Scripts\Activate.ps1")) {
+    if (Test-Path "venv") {
+        Write-Info "Incompatible virtual environment found. Recreating..."
+        Remove-Item -Recurse -Force venv
+    }
     Write-Info "Creating virtual environment..."
-    python -m venv venv
+    py -3.10 -m venv venv
 } else {
     Write-Info "Virtual environment already exists."
 }

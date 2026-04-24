@@ -39,7 +39,11 @@ echo -e "  - npm: $(npm -v)\n"
 echo -e "${BLUE}[2/4] Setting up Backend (FastAPI)...${NC}"
 cd backend
 
-if [ ! -d "venv" ]; then
+if [ ! -d "venv" ] || [ ! -f "venv/bin/activate" ]; then
+    if [ -d "venv" ]; then
+        echo -e "  - Incompatible virtual environment found. Recreating..."
+        rm -rf venv
+    fi
     echo -e "  - Creating virtual environment..."
     python3.10 -m venv venv
 else
